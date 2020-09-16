@@ -21,6 +21,14 @@ jobs:
         # Generate the website
         - name: Publish
           run: dotnet publish RandomBlazorTests.csproj -c Release
+        
+        # changes the base-tag in index.html from '/' to 'RandomBlazorTestSide' to match GitHub Pages repository subdirectory
+        - name: Change base-tag in index.html from / to RandomBlazorTestSide
+          run: sed -i 's/<base href="\/" \/>/<base href="\/RandomBlazorTestSide\/" \/>/g' bin/Release/netstandard2.1/publish/RandomBlazorTests/dist/index.html
+
+        # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
+        - name: Add .nojekyll file
+          run: touch bin/Release/netstandard2.1/publish/RandomBlazorTests/dist/.nojekyll
 
         # Publish the website
         - name: GitHub Pages action
