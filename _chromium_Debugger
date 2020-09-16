@@ -1,0 +1,1 @@
+chromium --remote-debugging-port=9222 --user-data-dir="/tmp/blazor-chrome-debug"  http://localhost:5000
