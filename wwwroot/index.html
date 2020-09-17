@@ -51,6 +51,17 @@
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
+    <script src="_content/Blazor.Extensions.Canvas/blazor.extensions.canvas.js"></script>
+    <script>
+        function windowLoop(timeStamp) {
+            window.requestAnimationFrame(windowLoop);
+            theInstance.invokeMethodAsync('WindowLoop', timeStamp);
+        }
+        window.initLoop = (instance) => {
+            window.theInstance = instance;
+            window.requestAnimationFrame(windowLoop);
+        };
+    </script>
 </body>
 
 </html>
